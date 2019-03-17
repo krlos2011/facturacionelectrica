@@ -1,0 +1,8 @@
+<div #graph (window:resize)="onResize()">
+  <div *ngIf="loading" class="text-center py-4">
+    <loading-dots></loading-dots>
+  </div>
+  <div *ngIf="message" class="alert alert-info m-4">{{message}}</div>
+  <div *ngIf="!message && containerId" [id]="containerId">
+  </div>
+</div>

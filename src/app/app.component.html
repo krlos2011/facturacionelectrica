@@ -1,0 +1,72 @@
+<div class="container-fluid py-3">
+
+  <div class="p-2 d-flex justify-content-end align-items-center">
+
+    <div class="d-flex align-items-center">
+      <button type="button" class="btn btn-outline-primary" (click)="import()">
+        <span class="fa fa-upload mr-2"></span>
+        <span>Import</span>
+      </button>
+      <button type="button" class="btn btn-outline-primary ml-2" (click)="addItem()">
+        <span class="fa fa-plus mr-2"></span>
+        <span>Add Item</span>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-6 col-xl-3 mt-4">
+      <div class="card h-100">
+        <div class="card-header">Summary</div>
+        <div *ngIf="!statsSummary" class="card-body">
+          <loading-dots></loading-dots>
+        </div>
+        <ul *ngIf="statsSummary" class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>From</strong>
+            <span class="ml-1">{{statsSummary.minDate | date}}</span>
+            <strong class="ml-1">to</strong>
+            <span class="ml-1">{{statsSummary.maxDate | date}}</span>
+          </li>
+          <li class="list-group-item">
+            <strong>Total consumption:</strong>
+            <span class="ml-1">{{statsSummary.sumConsumption / 1000 | number:'1.1-1'}} kWh</span>
+          </li>
+          <li class="list-group-item">
+            <strong>Total cost:</strong>
+            <span class="ml-1">{{statsSummary.sumCost | currency:'EUR':'symbol':'1.2-2'}}</span>
+          </li>
+          <li class="list-group-item">
+            <strong>Average price:</strong>
+            <span class="ml-1">{{statsSummary.avgPrice | currency:'EUR':'symbol':'1.9-9'}}/kWh</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngFor="let graph of graphs; index as graphIndex;" class="col-lg-6 col-xl-3 mt-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <div class="form-inline">
+            <label class="mr-2">{{graph.operation.label}}</label>
+            <select class="form-control form-control-sm" name="graphField_{{graphIndex}}"
+              [(ngModel)]="graph.selectedField">
+              <option *ngFor="let field of graph.fields" [ngValue]="field">{{field.label}}</option>
+            </select>
+            <label class="ml-1">{{graph.path.label}}</label>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <app-chart [chartType]="graph.chartType" [path]="graph.path.key" [field]="graph.selectedField.key"
+            [operation]="graph.operation.key" [yLabel]="graph.selectedField.yLabel"></app-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <app-hour-table></app-hour-table>
+  </div>
+</div>

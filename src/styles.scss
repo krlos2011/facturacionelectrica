@@ -1,0 +1,115 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~font-awesome/css/font-awesome.css";
+@import '~bootstrap/scss/bootstrap.scss';
+@import "~c3/c3.css";
+
+// Widths
+.w-1 {
+  width: 1% !important;
+}
+
+// Table ordered
+
+.table.table-ordered {
+  .column-ordered {
+    cursor: pointer;
+    position: relative;
+    padding-right: 2rem;
+    &:after {
+      display: inline-block;
+      font-family: FontAwesome;
+      position: absolute;
+      right: .5rem;
+      color: theme-color(tertiary);
+    }
+    &:hover:after {
+      content: '\f160';
+      opacity: .5;
+    }
+    &.column-ordered-asc:after {
+      content: '\f160';
+    }
+    &.column-ordered-desc:after {
+      content: '\f161';
+    }
+  }
+}
+
+// Pagination
+.pagination {
+  margin-bottom: 0;
+}
+
+// Loading dots
+
+$loading-dot-size: 14px !default;
+$loading-dot-size-sm: ($loading-dot-size * .7) !default;
+$loading-dot-size-lg: ($loading-dot-size * 2) !default;
+
+@keyframes loading-dot-keyframes {
+  0% {
+    background-color: $gray-500;
+  }
+  33% {
+    background-color: theme-color(primary);
+  }
+  66% {
+    background-color: $gray-500;
+  }
+}
+
+.loading-dot {
+  display: inline-block;
+  width: $loading-dot-size;
+  height: $loading-dot-size;
+  border-radius: $loading-dot-size;
+  animation-name: loading-dot-keyframes;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  background-color: $gray-500;
+
+  &:not(:first-child){
+    margin-left: ($loading-dot-size * .7);
+  }
+}
+
+.loading-dot-sm {
+  width: $loading-dot-size-sm;
+  height: $loading-dot-size-sm;
+  border-radius: $loading-dot-size-sm;
+
+  &:not(:first-child){
+    margin-left: ($loading-dot-size-sm * .7);
+  }
+}
+
+.loading-dot-lg {
+  width: $loading-dot-size-lg;
+  height: $loading-dot-size-lg;
+  border-radius: $loading-dot-size-lg;
+
+  &:not(:first-child){
+    margin-left: ($loading-dot-size-lg * .7);
+  }
+}
+
+.loading-dot-1 {
+  animation-delay: 0s;
+}
+
+.loading-dot-2 {
+  animation-delay: .5s;
+}
+
+.loading-dot-3 {
+  animation-delay: 1s;
+}
+
+.loading-text-sm {
+  font-size: $font-size-sm;
+}
+
+.loading-text-lg {
+  font-size: $lead-font-size;
+}
