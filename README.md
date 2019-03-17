@@ -1,7 +1,5 @@
 ## Facturación Eléctrica
 
-### Prueba Técnica para Wellness Telecom
-
 - Autor: Carlos Fernández Durán
 - Tecnologías, englobadas en el stack [MEAN](http://mean.io/):
     - BBDD: [MongoDB](https://www.mongodb.com/)
